@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="">
+  <meta name="keywords" content="Image Gallery">        
+  <meta name="robots" content="index , follow">
+
+  <link rel="stylesheet" href="IMAGE-GALLERY.CSS">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" 
+  integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" 
+  crossorigin="anonymous"referrerpolicy="no-referrer" />
+  
+  <title>Responsive Image Gallery</title>
+</head>
+<body>
+
+  <h1> 
+    <i class="fa-solid fa-image"></i>
+    Image Gallery</h1>
+
+  <div class="gallery">
+    <img class="images active" src="https://picsum.photos/id/1015/600/400" alt="Gallery Image 1">
+    <img class="images" src="https://picsum.photos/id/1016/600/400" alt="Gallery Image 2">
+    <img class="images" src="https://picsum.photos/id/1018/600/400" alt="Gallery Image 3">
+    <img class="images" src="https://picsum.photos/id/1019/600/400" alt="Gallery Image 4">
+    <img class="images" src="https://picsum.photos/id/1020/600/400" alt="Gallery Image 5">
+    <img class="images" src="https://picsum.photos/id/1021/600/400" alt="Gallery Image 6">
+    <img class="images" src="https://picsum.photos/id/300/600/400" alt="Gallery Image 7">
+    <img class="images" src="https://picsum.photos/id/301/600/400" alt="Gallery Image 8">
+    <img class="images" src="https://picsum.photos/id/302/600/400" alt="Gallery Image 9">
+    <img class="images" src="https://picsum.photos/id/320/600/400" alt="Gallery Image 10">
+    <img class="images" src="https://picsum.photos/id/304/600/400" alt="Gallery Image 11">
+    <img class="images" src="https://picsum.photos/id/305/600/400" alt="Gallery Image 12">
+    <img class="images" src="https://picsum.photos/id/306/600/400" alt="Gallery Image 13">
+    <img class="images" src="https://picsum.photos/id/307/600/400" alt="Gallery Image 14">
+    <img class="images" src="https://picsum.photos/id/308/600/400" alt="Gallery Image 15">
+    <img class="images" src="https://picsum.photos/id/309/600/400" alt="Gallery Image 16">
+    <img class="images" src="https://picsum.photos/id/310/600/400" alt="Gallery Image 17">
+    <img class="images" src="https://picsum.photos/id/311/600/400" alt="Gallery Image 18">
+    <img class="images" src="https://picsum.photos/id/312/600/400" alt="Gallery Image 19">
+    <img class="images" src="https://picsum.photos/id/313/600/400" alt="Gallery Image 20">
+
+  </div>
+
+
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" id="closeBtn">&times;</span>
+    <button class="prev-btn">Prev</button>
+    <img id="lightbox-img" src="" alt="Lightbox Image">
+    <button class="next-btn">Next</button>
+  </div>
+
+  <script>
+    const galleryImages = document.querySelectorAll(".images");
+    const lightbox = document.querySelector(".lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const closeBtn = document.getElementById("closeBtn"); 
+    const prevBtn = document.querySelector(".prev-btn");
+    const nextBtn = document.querySelector(".next-btn");
+
+    galleryImages.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+      lightboxImg.src = '';
+    });
+
+    lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox || e.target === closeBtn) {
+    lightbox.style.display = 'none';
+    lightboxImg.src = '';
+  }
+});
+
+
+    let slideIndex = 0;
+
+    galleryImages[slideIndex].classList.add("active");
+
+    prevBtn.addEventListener("click" , prevBtnFunction);
+    nextBtn.addEventListener("click" , nextBtnFunction);
+
+
+    function prevBtnFunction(){
+      galleryImages[slideIndex].classList.remove("active");
+
+      slideIndex = (slideIndex === 0) ? galleryImages.length - 1  : slideIndex - 1;
+      lightboxImg.src = galleryImages[slideIndex].src;
+      galleryImages[slideIndex].classList.add("active");
+    }
+
+
+    function nextBtnFunction(){
+      galleryImages[slideIndex].classList.remove("active");
+
+      slideIndex = (slideIndex === galleryImages.length - 1) ? 0 : slideIndex + 1;
+      lightboxImg.src = galleryImages[slideIndex].src;
+      galleryImages[slideIndex].classList.add("active");
+    }
+
+
+
+  </script>
+</body>
+</html>
