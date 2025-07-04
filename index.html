@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description" content="">
+  <meta name="description" content="Here is our image gallery where you can see images and also next and prev button.">
   <meta name="keywords" content="Image Gallery">        
   <meta name="robots" content="index , follow">
 
@@ -49,12 +49,15 @@
 
   <div class="lightbox" id="lightbox">
     <span class="close-btn" id="closeBtn">&times;</span>
-    <button class="prev-btn">Prev</button>
     <img id="lightbox-img" src="" alt="Lightbox Image">
-    <button class="next-btn">Next</button>
+    <div class="btn-container">
+      <div class="prev-btn">Prev</div>
+      <div class="next-btn">Next</div>
+    </div>
   </div>
 
   <script>
+    
     const galleryImages = document.querySelectorAll(".images");
     const lightbox = document.querySelector(".lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
@@ -62,10 +65,14 @@
     const prevBtn = document.querySelector(".prev-btn");
     const nextBtn = document.querySelector(".next-btn");
 
-    galleryImages.forEach(img => {
+
+    let slideIndex = 0;
+
+    galleryImages.forEach((img , index) => {
       img.addEventListener('click', () => {
+        slideIndex = index;
         lightbox.style.display = 'flex';
-        lightboxImg.src = img.src;
+        lightboxImg.src = galleryImages[slideIndex].src;
       });
     });
 
@@ -81,8 +88,6 @@
   }
 });
 
-
-    let slideIndex = 0;
 
     galleryImages[slideIndex].classList.add("active");
 
