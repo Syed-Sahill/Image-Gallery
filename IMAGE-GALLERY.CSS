@@ -133,9 +133,11 @@
       z-index: 1000;
     }
 
+
     body.noscroll {
-      overflow: hidden;
-    }
+  overflow: hidden;
+}
+
     @media (width <= 1000px) {
       .gallery {
       display: grid;
