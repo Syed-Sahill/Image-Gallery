@@ -134,8 +134,10 @@
     }
 
 
-    body.noscroll {
-  overflow: hidden;
+   body.noscroll {
+  overflow-y: hidden;
+  position: fixed;
+  width: 100%;
 }
 
     @media (width <= 1000px) {
